@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kilangi Case Study</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5e5cd;
+      --surface: rgba(255,255,255,0.85);
+      --txt: #1f2d16;
+      --muted: #4f5d30;
+      --accent: #5d653d;
+      --border: rgba(31, 45, 22, 0.16);
+      --ff: 'Inter', sans-serif;
+      --fd: 'Playfair Display', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--txt);
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--ff);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav.site-nav {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .site-logo {
+      font-family: var(--fd);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .site-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-links a {
+      font-size: 0.92rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .site-links a:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    .hero {
+      min-height: calc(100vh - 84px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px 80px;
+      text-align: center;
+      background: url('assets/hero_screen.png') center center / cover no-repeat;
+      background-color: #f5e5cd;
+      color: var(--txt);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(245,229,205,0.28);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      width: 100%;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+    }
+
+    .hero h1 {
+      font-family: var(--fd);
+      font-size: clamp(3.2rem, 8vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+      color: #1f2d16;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: #4f5d30;
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 30px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #e7c089, #f7ebc7);
+      color: #090709;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+    }
+
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section h2 {
+      font-family: var(--fd);
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .screens {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 24px;
+    }
+
+    .screen-card {
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: none;
+      border: none;
+      background: transparent;
+    }
+
+    .screen-card img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .section img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+      height: auto;
+      object-fit: cover;
+      border-radius: 24px;
+      margin-top: 24px;
+    }
+
+    .section p,
+    .section h2,
+    .card p,
+    .card h3 {
+      color: #1f2d16;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.82);
+      border-color: rgba(31, 45, 22, 0.12);
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #5d653d, #9aa775);
+      color: #fff;
+    }
+
+    .btn:hover {
+      box-shadow: 0 18px 40px rgba(93,101,61,0.24);
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 24px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,.55);
+    }
+
+    @media (max-width: 900px) {
+      nav.site-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding: 40px 18px 60px;
+      }
+
+      .section {
+        padding: 48px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>KILANGI</h1>
+      <p>Timeless Jewellery Experience</p>
+      <button class="btn" onclick="openProject()">View Live Project</button>
+    </div>
+  </section>
+
+  
+
+  <!-- PROBLEM + SOLUTION -->
+  <section class="section fade">
+    <h2>Problem & Solution</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Problem</h3>
+        <p>Users struggle with trust, cluttered UI, and poor navigation in jewelry websites.</p>
+      </div>
+      <div class="card">
+        <h3>Solution</h3>
+        <p>Designed a minimal, premium experience focused on clarity, elegance, and usability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARGET -->
+  <section class="section fade">
+    <h2>Target Audience</h2>
+    <div class="grid">
+      <div class="card">Young Professionals</div>
+      <div class="card">Gift Buyers</div>
+      <div class="card">Fashion Enthusiasts</div>
+      <div class="card">Occasional Buyers</div>
+    </div>
+  </section>
+
+  <!-- DESIGN PROCESS -->
+  <section class="section fade split">
+    <div>
+      <h2>Design Thinking Process</h2>
+      <p><strong>Empathize:</strong> User behavior research</p>
+      <p><strong>Define:</strong> Trust & clarity issues</p>
+      <p><strong>Ideate:</strong> Clean layout concepts</p>
+      <p><strong>Design:</strong> UI & frontend</p>
+      <p><strong>Test:</strong> Iterations & improvements</p>
+    </div>
+
+    <img src="assets/process.jpg">
+  </section>
+
+  <!-- FINAL UI -->
+  <section class="section fade">
+    <h2>Final UI Screens</h2>
+    <div class="screens">
+      <div class="screen-card"><img src="assets/screen4.png" alt="Final UI screen 1"></div>
+      <div class="screen-card"><img src="assets/screen2.png" alt="Final UI screen 2"></div>
+      <div class="screen-card"><img src="assets/screen3.png" alt="Final UI screen 3"></div>
+      <div class="screen-card"><img src="assets/screen1.png" alt="Final UI screen 4"></div>
+      <div class="screen-card"><img src="assets/screen5.png" alt="Final UI screen 5"></div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section fade">
+    <h2>Reflection</h2>
+    <p>
+      This project helped me understand how minimal design, strong visual hierarchy,
+      and premium aesthetics can build trust and improve user experience in e-commerce.
+    </p>
+  </section>
+
+  <footer>
+    <p>© Kilangi Case Study</p>
+  </footer>
+
+  <script>
+    function openProject() {
+      window.open("webPage/index.html", "_blank");
+    }
+
+    // scroll animation
+    const faders = document.querySelectorAll('.fade');
+    window.addEventListener('scroll', () => {
+      faders.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+          el.classList.add('show');
+        }
+      });
+    });
+
+    // Typing animation for brand intro
+    const brandText = "Kilangi is a modern jewelry brand concept focused on creating timeless, minimal, and elegant pieces for everyday wear. The brand aims to blend traditional craftsmanship with contemporary design, making jewelry both accessible and meaningful. With a strong emphasis on simplicity and sophistication, Kilangi is designed for users who appreciate subtle luxury rather than overly ornate designs. The brand identity revolves around clean aesthetics, premium feel, and emotional connection.";
+
+    let charIndex = 0;
+    const brandElement = document.getElementById('brandText');
+    const typingSpeed = 30; // milliseconds per character
+
+    function typeText() {
+      if (charIndex < brandText.length) {
+        brandElement.textContent += brandText.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, typingSpeed);
+      }
+    }
+
+    // Start typing when page loads
+    window.addEventListener('load', () => {
+      setTimeout(typeText, 500); // delay before starting
+    });
+  </script>
+
+</body>
+
+</html>

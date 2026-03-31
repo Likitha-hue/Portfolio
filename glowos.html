@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>GlowOS — Android Theme</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --neon: #00FF88;
+            --neon2: #00FFCC;
+            --bg: #0A0A0A;
+            --surface: #0F1A12;
+            --border: rgba(0, 255, 136, 0.15);
+            --txt: #FFFFFF;
+            --txt2: rgba(255, 255, 255, 0.55);
+            --lorb: 'Orbitron', monospace;
+            --raj: 'Rajdhani', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--txt);
+            font-family: var(--raj);
+            overflow-x: hidden
+        }
+
+        nav.site-nav {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 22px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .site-logo {
+            font-family: var(--lorb);
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            color: var(--txt);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .site-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-links a {
+            color: var(--txt);
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 255, 136, .12);
+            transition: background .2s, color .2s;
+        }
+
+        .site-links a:hover {
+            background: rgba(0, 255, 136, .14);
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon)
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 56px;
+            position: relative;
+            z-index: 1
+        }
+
+        .neon-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon), transparent);
+            opacity: .3
+        }
+
+        .glass {
+            background: rgba(15, 26, 18, 0.55);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            backdrop-filter: blur(20px)
+        }
+
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(0, 255, 136, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, .035) 1px, transparent 1px);
+            background-size: 56px 56px
+        }
+
+        /* PHONE MOCKUP */
+        .phone-mockup {
+            width: 100%;
+            background: #111;
+            border-radius: 30px;
+            border: 2px solid #2a2a2a;
+            box-shadow: 0 0 0 1px #0a0a0a, inset 0 0 0 1px #333, 0 24px 48px rgba(0, 0, 0, .7);
+            position: relative;
+            overflow: visible;
+            flex-shrink: 0
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 11px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #0a0a0a;
+            border: 1.5px solid #222;
+            z-index: 10
+        }
+
+        .phone-mockup::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 60px;
+            width: 3px;
+            height: 34px;
+            border-radius: 0 2px 2px 0;
+            background: #222
+        }
+
+        .phone-screen {
+            margin: 30px 7px 7px;
+            border-radius: 22px;
+            overflow: hidden;
+            background: #050505;
+            position: relative
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .phone-screen-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px
+        }
+
+        .phone-screen-placeholder span {
+            font-family: var(--lorb);
+            font-size: 7px;
+            letter-spacing: 2px;
+            color: rgba(0, 255, 136, .3);
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 10px
+        }
+
+        .phone-mockup.neon-glow {
+            border-color: #1a3a24;
+            box-shadow: 0 0 0 1px #0a0a0a, inset 0 0 0 1px #1a3a24, 0 0 28px rgba(0, 255, 136, .12), 0 24px 48px rgba(0, 0, 0, .8)
+        }
+
+        .phone-mockup.neon-glow .phone-screen {
+            background: #020d04
+        }
+
+        .phone-mockup.light-glow {
+            border-color: #b8e8cc;
+            background: #f0f0f0;
+            box-shadow: 0 0 0 1px #e8e8e8, inset 0 0 0 1px #d4d4d4, 0 24px 48px rgba(0, 0, 0, .2)
+        }
+
+        .phone-mockup.light-glow::before {
+            background: #ddd;
+            border-color: #bbb
+        }
+
+        .phone-mockup.light-glow::after {
+            background: #bbb
+        }
+
+        .phone-mockup.light-glow .phone-screen {
+            background: #d0f0e0
+        }
+
+        .screen-name {
+            font-family: var(--lorb);
+            font-size: 8px;
+            letter-spacing: 2px;
+            color: var(--neon);
+            text-transform: uppercase;
+            opacity: .5;
+            text-align: center;
+            margin-top: 8px
+        }
+
+        .screen-name.ln {
+            color: #008844
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-glow {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 55%;
+            height: 100%;
+            background: radial-gradient(ellipse 70% 70% at 70% 50%, rgba(0, 255, 136, .07) 0%, transparent 70%);
+            pointer-events: none
+        }
+
+        .hero-left {
+            padding: 80px 40px 80px 56px;
+            position: relative;
+            z-index: 2
+        }
+
+        .h-ey {
+            font-family: var(--lorb);
+            font-size: 9px;
+            letter-spacing: 4px;
+            color: var(--neon);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: .8
+        }
+
+        .h-ey::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--neon)
+        }
+
+        .h-title {
+            font-family: var(--lorb);
+            font-size: 76px;
+            line-height: .9;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 10px;
+            background: linear-gradient(150deg, #fff 20%, var(--neon) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+
+        .h-sub {
+            font-family: var(--lorb);
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: var(--neon2);
+            text-transform: uppercase;
+            margin-bottom: 36px;
+            opacity: .7
+        }
+
+        .h-desc {
+            font-family: var(--raj);
+            font-size: 16px;
+            color: var(--txt2);
+            line-height: 1.85;
+            max-width: 420px;
+            font-weight: 300;
+            margin-bottom: 48px
+        }
+
+        .h-meta {
+            display: flex;
+            gap: 36px;
+            flex-wrap: wrap
+        }
+
+        .h-ml {
+            font-family: var(--lorb);
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+            opacity: .6
+        }
+
+        .h-mv {
+            font-family: var(--raj);
+            font-size: 15px;
+            color: var(--txt);
+            font-weight: 500
+        }
+
+        .hero-right {
+            height: 100vh;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .hero-image-right {
+            width: 450px;
+            max-width: 55vw;
+            transform: scale(1.05);
+        }
+
+        .hero-image-right img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 18px;
+            box-shadow: 0 28px 60px rgba(0, 0, 0, .65);
+            border: 1px solid rgba(0, 255, 136, .35)
+        }
+
+        .hero-phones .phone-mockup:nth-child(2) {
+            transform: translateY(40px)
+        }
+
+        .hero-phones .phone-mockup:nth-child(3) {
+            transform: translateY(80px)
+        }
+
+        /* SECTIONS */
+        .sec {
+            padding: 96px 0;
+            position: relative;
+        }
+
+        .design-system {
+            position: relative;
+        }
+
+        .design-system .ds-arrow {
+            position: relative;
+            width: 12px;
+            height: 140px;
+            margin: 12px auto 22px;
+            border-radius: 6px;
+            background: linear-gradient(to bottom, rgba(0, 255, 136, 1), rgba(0, 255, 136, 0));
+            filter: drop-shadow(0 0 18px rgba(0, 255, 136, .85));
+            opacity: 0;
+            transform: translateY(-36px) scaleY(0.6);
+            pointer-events: none;
+            transition: opacity .18s ease, transform .18s ease;
+            will-change: transform, opacity;
+        }
+
+        .design-system .ds-arrow::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 30px;
+            height: 20px;
+            transform: translate(-50%, 0);
+            clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+            background: rgba(0, 255, 136, 1);
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, .8));
+        }
+
+        @keyframes ds-arrow-drop {
+            0% {
+                opacity: 0;
+                transform: translateY(-36px) scaleY(0.6);
+            }
+
+            20% {
+                opacity: 1;
+                transform: translateY(0) scaleY(1);
+            }
+
+            55% {
+                transform: translateY(40px) scaleY(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(56px) scaleY(1);
+            }
+        }
+
+        .design-system .ds-arrow.active {
+            animation: ds-arrow-drop .72s ease-out forwards;
+        }
+
+
+        .ds-img {
+            width: 100%;
+            max-width: 100%;
+            margin: 20px auto;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 40px rgba(0, 255, 136, .22);
+            cursor: pointer;
+            transition: transform .2s ease;
+        }
+
+        .ds-img:hover,
+        .ds-img:focus {
+            transform: scale(1.04);
+        }
+
+        .ds-img-top {
+            margin-bottom: 14px;
+        }
+
+        .ds-img-bottom {
+            margin-top: 18px;
+        }
+
+        .ds-img img {
+            width: 100%;
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            nav.site-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 16px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 24px 0 60px;
+            }
+
+            .hero-right {
+                min-height: auto;
+                padding-top: 40px;
+                justify-content: flex-start;
+            }
+
+            .hero-image-right {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .h-desc {
+                max-width: 100%;
+                margin-bottom: 32px;
+            }
+
+            .h-meta {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .ov-grid,
+            .g-grid,
+            .hifi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sec {
+                padding: 68px 0;
+            }
+
+            .thankyou {
+                padding: 70px 24px;
+            }
+        }
+
+        .sec-tag {
+            font-family: var(--lorb);
+            font-size: 8px;
+            letter-spacing: 4px;
+            color: var(--neon);
+            text-transform: uppercase;
+            opacity: .6;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .sec-tag::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--neon);
+            opacity: .6
+        }
+
+        .sec-title {
+            font-family: var(--lorb);
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 52px
+        }
+
+        .sec-title em {
+            font-style: normal;
+            background: linear-gradient(90deg, var(--neon), var(--neon2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+
+        /* OVERVIEW */
+        .ov-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px
+        }
+
+        .ov-card {
+            padding: 36px 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: linear-gradient(140deg, rgba(15, 26, 18, .75), rgba(10, 10, 10, .9));
+            position: relative;
+            overflow: hidden
+        }
+
+        .ov-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon), transparent);
+            opacity: .5
+        }
+
+        .ov-lbl {
+            font-family: var(--lorb);
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            opacity: .7
+        }
+
+        .ov-ttl {
+            font-family: var(--raj);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--txt);
+            margin-bottom: 12px
+        }
+
+        .ov-dsc {
+            font-family: var(--raj);
+            font-size: 13.5px;
+            color: var(--txt2);
+            line-height: 1.7
+        }
+
+        /* GOALS */
+        .g-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 24px
+        }
+
+        .b-inner {
+            padding: 44px 40px
+        }
+
+        .b-title {
+            font-family: var(--lorb);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--txt);
+            margin-bottom: 28px
+        }
+
+        .g-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 22px
+        }
+
+        .g-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--neon);
+            flex-shrink: 0;
+            margin-top: 8px;
+            box-shadow: 0 0 8px var(--neon)
+        }
+
+        .g-txt {
+            font-family: var(--raj);
+            font-size: 14.5px;
+            color: var(--txt2);
+            line-height: 1.75
+        }
+
+        .p-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0, 255, 136, .07)
+        }
+
+        .p-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .p-name {
+            font-family: var(--lorb);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--txt);
+            letter-spacing: .5px;
+            flex: 1
+        }
+
+        .p-det {
+            font-family: var(--raj);
+            font-size: 12px;
+            color: var(--txt2);
+            text-align: right;
+            line-height: 1.5
+        }
+
+        /* DESIGN SYSTEM */
+        .ds-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px
+        }
+
+        .ds-blk {
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: rgba(15, 26, 18, .5)
+        }
+
+        .ds-ttl {
+            font-family: var(--lorb);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            opacity: .8
+        }
+
+        .c-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .c-row {
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+        .c-sw {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, .08);
+            position: relative;
+            overflow: hidden
+        }
+
+        .c-sw::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .12) 0%, transparent 55%)
+        }
+
+        .c-nm {
+            font-family: var(--raj);
+            font-size: 14px;
+            color: var(--txt);
+            font-weight: 500
+        }
+
+        .c-hx {
+            font-family: var(--lorb);
+            font-size: 10px;
+            color: var(--txt2);
+            letter-spacing: .5px;
+            margin-top: 2px
+        }
+
+        .t-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px
+        }
+
+        .t-item {
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 255, 136, .07)
+        }
+
+        .t-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .t-det {
+            font-family: var(--raj);
+            font-size: 11px;
+            color: var(--txt2);
+            letter-spacing: .3px;
+            margin-top: 5px
+        }
+
+        .ds-img {
+            margin-top: 28px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 50px rgba(0, 255, 136, .07)
+        }
+
+        .ds-img img {
+            width: 100%;
+            display: block
+        }
+
+        /* SCREENS */
+        .s5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            justify-items: center;
+            margin-bottom: 32px
+        }
+
+        .s4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            justify-items: center;
+            padding: 0 8%
+        }
+
+        .m-hdr {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px
+        }
+
+        .m-bdg {
+            font-family: var(--lorb);
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 100px
+        }
+
+        .dk-bdg {
+            background: rgba(0, 255, 136, .08);
+            color: var(--neon);
+            border: 1px solid var(--border)
+        }
+
+        .lt-bdg {
+            background: rgba(0, 136, 68, .1);
+            color: #008844;
+            border: 1px solid rgba(0, 136, 68, .25)
+        }
+
+        .m-dsc {
+            font-family: var(--raj);
+            font-size: 13px;
+            color: var(--txt2)
+        }
+
+        .lt-sec {
+            padding: 96px 0;
+            background: linear-gradient(180deg, var(--bg) 0%, #03100a 50%, var(--bg) 100%)
+        }
+
+        /* RULES */
+        .r-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px
+        }
+
+        .r-card {
+            padding: 34px 28px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: rgba(15, 26, 18, .5)
+        }
+
+        .r-lbl {
+            font-family: var(--lorb);
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            opacity: .7
+        }
+
+        .r-val {
+            font-family: var(--lorb);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--txt);
+            margin-bottom: 12px
+        }
+
+        .r-dsc {
+            font-family: var(--raj);
+            font-size: 13px;
+            color: var(--txt2);
+            line-height: 1.7
+        }
+
+        .r-demo {
+            margin-top: 20px;
+            height: 44px;
+            border-radius: 8px
+        }
+
+        /* THANKS */
+        .thanks {
+            padding: 110px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .thanks::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0, 255, 136, .05) 0%, transparent 70%)
+        }
+
+        .tk-logo {
+            font-family: var(--lorb);
+            font-size: 60px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, var(--neon) 60%, var(--neon2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 1
+        }
+
+        .tk-sub {
+            font-family: var(--lorb);
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: var(--neon);
+            text-transform: uppercase;
+            opacity: .55;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1
+        }
+
+        .tk-div {
+            width: 50px;
+            height: 1px;
+            background: var(--neon);
+            margin: 0 auto 40px;
+            box-shadow: 0 0 8px var(--neon);
+            position: relative;
+            z-index: 1
+        }
+
+        .tk-msg {
+            font-family: var(--raj);
+            font-size: 17px;
+            color: var(--txt2);
+            position: relative;
+            z-index: 1;
+            font-weight: 300
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="grid-bg"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-left">
+            <div class="h-ey">Android Theme</div>
+            <div class="h-title">GLOW<br />OS</div>
+            <div class="h-sub">Neon Glassmorphism System</div>
+            <p class="h-desc">A fully custom Android UI theme built on a dual-mode design system — neon-lit
+                glassmorphism dark surfaces paired with a clean botanical light palette. Every pixel governed by a
+                single token architecture.</p>
+            <div class="h-meta">
+                <div><span class="h-ml">Role</span><span class="h-mv">UI / UX Designer</span></div>
+                <div><span class="h-ml">Screens</span><span class="h-mv">9 Core Views</span></div>
+                <div><span class="h-ml">Modes</span><span class="h-mv">Dark + Light</span></div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-image-right">
+                <img src="img/home.png" alt="GlowaOS Home" />
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-line"></div>
+
+    <!-- OVERVIEW -->
+    <section class="sec">
+        <div class="container">
+            <div class="sec-tag">Overview</div>
+            <h2 class="sec-title">Rooted in <em>System Thinking</em></h2>
+            <div class="ov-grid">
+                <div class="ov-card">
+                    <div class="ov-lbl">The Brief</div>
+                    <div class="ov-ttl">Custom Android Theme</div>
+                    <div class="ov-dsc">Design a cohesive, fully tokenised Android UI theme that works across all native
+                        system screens — lock, home, dialler, messaging, settings — in both dark and light modes.</div>
+                </div>
+                <div class="ov-card">
+                    <div class="ov-lbl">The Concept</div>
+                    <div class="ov-ttl">Neon Glassmorphism</div>
+                    <div class="ov-dsc">Layered translucent surfaces lit from within by primary neon green #00FF88,
+                        creating depth and atmosphere while maintaining full readability at all ambient conditions.
+                    </div>
+                </div>
+                <div class="ov-card">
+                    <div class="ov-lbl">The Outcome</div>
+                    <div class="ov-ttl">Dual-Mode System</div>
+                    <div class="ov-dsc">A complete design system — colour tokens, two font families, 12 text styles, and
+                        9 screen templates across both dark neon and light botanical modes.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-line"></div>
+
+    <!-- GOALS & APPROACH -->
+    <section class="sec">
+        <div class="container">
+            <div class="sec-tag">Goals & Approach</div>
+            <h2 class="sec-title">What We Set <em>Out to Build</em></h2>
+            <div class="g-grid">
+                <div class="glass b-inner">
+                    <div class="b-title">Design Goals</div>
+                    <div class="g-item">
+                        <div class="g-dot"></div>
+                        <div class="g-txt">Build a single token system that scales across 9+ native Android screens
+                            without breaking visual consistency.</div>
+                    </div>
+                    <div class="g-item">
+                        <div class="g-dot"></div>
+                        <div class="g-txt">Create a neon aesthetic that feels bold in dark mode but doesn't sacrifice
+                            legibility in high-ambient environments.</div>
+                    </div>
+                    <div class="g-item">
+                        <div class="g-dot"></div>
+                        <div class="g-txt">Define a dual-mode palette where light mode feels organic and botanical — not
+                            just an inverted dark.</div>
+                    </div>
+                    <div class="g-item">
+                        <div class="g-dot"></div>
+                        <div class="g-txt">Achieve WCAG AA contrast ratios on all text pairings in both colour modes.
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <div class="g-dot"></div>
+                        <div class="g-txt">Keep the system minimal enough for community customisation while opinionated
+                            enough to feel designed.</div>
+                    </div>
+                </div>
+                <div class="glass b-inner">
+                    <div class="b-title">Design Process</div>
+                    <div class="p-row">
+                        <div class="p-name">Discover</div>
+                        <div class="p-det">Competitive audit<br />Intent mapping</div>
+                    </div>
+                    <div class="p-row">
+                        <div class="p-name">Define</div>
+                        <div class="p-det">Token architecture<br />Colour theory</div>
+                    </div>
+                    <div class="p-row">
+                        <div class="p-name">Design</div>
+                        <div class="p-det">Glass components<br />Screen-by-screen</div>
+                    </div>
+                    <div class="p-row">
+                        <div class="p-name">Refine</div>
+                        <div class="p-det">Contrast checks<br />Edge states</div>
+                    </div>
+                    <div class="p-row">
+                        <div class="p-name">Deliver</div>
+                        <div class="p-det">Token export<br />Documentation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-line"></div>
+
+    <!-- DESIGN SYSTEM -->
+    <section class="sec design-system">
+        <div class="container">
+            <div class="sec-tag">Design System</div>
+            <h2 class="sec-title">Colour Tokens &amp; <em>Typography</em></h2>
+            <div id="dsImageTop" class="ds-img ds-img-top" role="button" tabindex="0" aria-label="Design system image">
+                <img src="./img/ds.png" alt="GlowOS Design System" />
+            </div>
+            <div id="dsArrow" class="ds-arrow" aria-hidden="true"></div>
+            <div class="ds-wrap">
+                <div class="ds-blk">
+                    <div class="ds-ttl">Colour Tokens</div>
+                    <div class="c-list">
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#00FF88;box-shadow:0 0 14px rgba(0,255,136,.45)"></div>
+                            <div>
+                                <div class="c-nm">Primary Neon</div>
+                                <div class="c-hx">#00FF88</div>
+                            </div>
+                        </div>
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#00FFCC;box-shadow:0 0 12px rgba(0,255,204,.35)"></div>
+                            <div>
+                                <div class="c-nm">Secondary Neon</div>
+                                <div class="c-hx">#00FFCC</div>
+                            </div>
+                        </div>
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#00FFFF;box-shadow:0 0 12px rgba(0,255,255,.3)"></div>
+                            <div>
+                                <div class="c-nm">Accent Cyan</div>
+                                <div class="c-hx">#00FFFF</div>
+                            </div>
+                        </div>
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#0A0A0A;border-color:rgba(255,255,255,.15)"></div>
+                            <div>
+                                <div class="c-nm">Background</div>
+                                <div class="c-hx">#0A0A0A</div>
+                            </div>
+                        </div>
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#0F1A12;border-color:rgba(0,255,136,.2)"></div>
+                            <div>
+                                <div class="c-nm">Glass Surface</div>
+                                <div class="c-hx">#0F1A12</div>
+                            </div>
+                        </div>
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#F0FFF8;border-color:rgba(0,136,68,.3)"></div>
+                            <div>
+                                <div class="c-nm">Light Background</div>
+                                <div class="c-hx">#F0FFF8</div>
+                            </div>
+                        </div>
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#008844"></div>
+                            <div>
+                                <div class="c-nm">Primary Light</div>
+                                <div class="c-hx">#008844</div>
+                            </div>
+                        </div>
+                        <div class="c-row">
+                            <div class="c-sw" style="background:#FFFFFF"></div>
+                            <div>
+                                <div class="c-nm">Primary Text</div>
+                                <div class="c-hx">#FFFFFF</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ds-blk">
+                    <div class="ds-ttl">Typography</div>
+                    <div class="t-list">
+                        <div class="t-item">
+                            <div
+                                style="font-family:var(--lorb);font-size:32px;font-weight:900;color:var(--neon);line-height:1">
+                                09:41</div>
+                            <div class="t-det">Orbitron · Clock Display · 72pt</div>
+                        </div>
+                        <div class="t-item">
+                            <div
+                                style="font-family:var(--lorb);font-size:20px;font-weight:700;color:var(--txt);line-height:1">
+                                Screen Title</div>
+                            <div class="t-det">Orbitron · 24pt / Auto</div>
+                        </div>
+                        <div class="t-item">
+                            <div
+                                style="font-family:var(--lorb);font-size:13px;letter-spacing:3px;opacity:.7;color:var(--txt);line-height:1">
+                                CATEGORY LABEL</div>
+                            <div class="t-det">Orbitron · 12pt · tracking 4px</div>
+                        </div>
+                        <div class="t-item">
+                            <div
+                                style="font-family:var(--raj);font-size:20px;font-weight:700;color:var(--txt);line-height:1">
+                                Notification Title</div>
+                            <div class="t-det">Rajdhani · Bold · 16pt / 160</div>
+                        </div>
+                        <div class="t-item">
+                            <div
+                                style="font-family:var(--raj);font-size:15px;font-weight:400;color:var(--txt2);line-height:1.5">
+                                Body text that reads well across all native Android screens.</div>
+                            <div class="t-det">Rajdhani · Regular · 16pt / 160</div>
+                        </div>
+                        <div class="t-item">
+                            <div
+                                style="font-family:var(--raj);font-size:11px;font-weight:300;color:var(--txt2);line-height:1">
+                                11:42 AM · Timestamp</div>
+                            <div class="t-det">Rajdhani · Light 300 · 11pt</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <div class="neon-line"></div>
+
+    <!-- DARK MODE 9 MOCKUPS -->
+    <section class="sec">
+        <div class="container">
+            <div class="sec-tag">UI Screens</div>
+            <h2 class="sec-title">Dark Mode <em>Gallery</em></h2>
+            <div class="m-hdr">
+                <div class="m-bdg dk-bdg">Dark Mode</div>
+                <div class="m-dsc">Neon glassmorphism · Background #0A0A0A · Primary Neon #00FF88</div>
+            </div>
+            <div class="s5">
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen1.png" alt="Screen 1" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen2.png" alt="Screen 2" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen3.png" alt="Screen 3" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen4.png" alt="Screen 4" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen5.png" alt="Screen 5" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s4">
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen6.png" alt="Screen 6" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen7.png" alt="Screen 7" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen8.png" alt="Screen 8" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/screen9.png" alt="Screen 9" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-line"></div>
+
+    <!-- LIGHT MODE 9 MOCKUPS -->
+    <section class="lt-sec">
+        <div class="container">
+            <div class="sec-tag">UI Screens</div>
+            <h2 class="sec-title">Light Mode <em>Gallery</em></h2>
+            <div class="m-hdr">
+                <div class="m-bdg lt-bdg">Light Mode</div>
+                <div class="m-dsc">Botanical palette · Background #F0FFF8 · Primary #008844</div>
+            </div>
+            <div class="s5">
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc1.png" alt="Screen 1" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc2.png" alt="Screen 2" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc3.png" alt="Screen 3" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc4.png" alt="Screen 4" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc5.png" alt="Screen 5" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s4">
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc6.png" alt="Screen 6" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc7.png" alt="Screen 7" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc8.png" alt="Screen 8" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="phone-mockup neon-glow">
+                        <div class="phone-screen">
+                            <img src="img/sc9.png" alt="Screen 9" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-line"></div>
+
+    <!-- GLASS RULES -->
+    <section class="sec">
+        <div class="container">
+            <div class="sec-tag">Component Rules</div>
+            <h2 class="sec-title">Glassmorphism <em>System Rules</em></h2>
+            <div class="r-grid">
+                <div class="r-card">
+                    <div class="r-lbl">Background</div>
+                    <div class="r-val">#0F1A12</div>
+                    <div class="r-dsc">Glass Surface base at 60% opacity. Applied to all floating panels, notification
+                        drawers, and quick settings tiles.</div>
+                    <div class="r-demo" style="background:rgba(15,26,18,.6);border:1px solid rgba(0,255,136,.15)"></div>
+                </div>
+                <div class="r-card">
+                    <div class="r-lbl">Border</div>
+                    <div class="r-val">#00FF88 · 25%</div>
+                    <div class="r-dsc">1px neon border at 25% opacity separates glass layers. Active states increase to
+                        60% with a 0 0 12px neon glow.</div>
+                    <div style="margin-top:20px;display:flex;gap:8px">
+                        <div style="flex:1;height:44px;border-radius:8px;border:1px solid rgba(0,255,136,.25)"></div>
+                        <div
+                            style="flex:1;height:44px;border-radius:8px;border:1px solid rgba(0,255,136,.6);box-shadow:0 0 12px rgba(0,255,136,.3)">
+                        </div>
+                    </div>
+                </div>
+                <div class="r-card">
+                    <div class="r-lbl">Blur Depth</div>
+                    <div class="r-val">backdrop 20px</div>
+                    <div class="r-dsc">Consistent 20px backdrop-filter blur across all glass components. Maintains
+                        readable depth without performance degradation.</div>
+                    <div class="r-demo"
+                        style="background:linear-gradient(135deg,rgba(0,255,136,.15),rgba(0,255,204,.07));border:1px solid rgba(0,255,136,.2)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-line"></div>
+
+    <!-- THANK YOU -->
+    <footer class="thanks">
+        <div class="container">
+            <div class="tk-logo">GlowOS</div>
+            <div class="tk-sub">Android Theme · Neon Glassmorphism</div>
+            <div class="tk-div"></div>
+            <p class="tk-msg">Thank you for your time </p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const dsArrow = document.getElementById('dsArrow');
+            const dsImageTop = document.getElementById('dsImageTop');
+            const dsImageBottom = document.getElementById('dsImageBottom');
+            if (!dsArrow || !dsImageTop || !dsImageBottom) return;
+
+            function startDrop() {
+                dsArrow.classList.remove('active');
+                void dsArrow.offsetWidth;
+                dsArrow.classList.add('active');
+            }
+
+            function stopDrop() {
+                dsArrow.classList.remove('active');
+            }
+
+            [dsImageTop, dsImageBottom].forEach((img) => {
+                img.addEventListener('mouseenter', () => {
+                    startDrop();
+                });
+                img.addEventListener('focus', () => {
+                    startDrop();
+                });
+                img.addEventListener('mouseleave', stopDrop);
+                img.addEventListener('blur', stopDrop);
+                img.addEventListener('click', () => {
+                    startDrop();
+                    setTimeout(stopDrop, 760);
+                });
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
